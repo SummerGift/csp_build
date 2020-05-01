@@ -29,11 +29,11 @@ def main():
     cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/rt-thread/eclipse/workspace"'
     cmd = cmd_pre + ' -import "file:/rt-thread/hello_test"'
     print(cmd)
-    execute_command(cmd)
+    os.system(cmd)
 
     cmd = cmd_pre + ' -cleanBuild "hello_test"'
     print(cmd)
-    execute_command(cmd)
+    os.system(cmd)
 
 
 if __name__ == '__main__':
