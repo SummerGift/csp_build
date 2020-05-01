@@ -25,7 +25,15 @@ def main():
     os.chdir("/rt-thread")
     execute_command("git clone https://gitee.com/SummerGift/hello_test.git")
     execute_command("chmod a+x hello_test/build.sh")
-    execute_command("hello_test/build.sh")
+
+    cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/rt-thread/eclipse/workspace"'
+    cmd = cmd_pre + ' -import "file:/rt-thread/hello_test"'
+    print(cmd)
+    execute_command(cmd)
+
+    cmd = cmd_pre + ' -cleanBuild "hello_test"'
+    print(cmd)
+    execute_command(cmd)
 
 
 if __name__ == '__main__':
