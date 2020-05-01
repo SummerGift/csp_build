@@ -6,7 +6,8 @@ services:
 before_install:
 - docker pull summergift/csp_test:v1.0
 - docker images
-- docker run -it summergift/csp_test:v1.0 -v ./csp_build.py:/rt-thread/csp_build.py bash -c
+- docker run -v ./csp_build.py:/rt-thread/csp_build.py \
+  -it summergift/csp_test:v1.0 bash -c \
   "scons --version && pytest --version
    && cd /rt-thread && git clone https://gitee.com/SummerGift/hello_test.git
    && chmod a+x hello_test/build.sh && hello_test/build.sh && python csp_build.py"
