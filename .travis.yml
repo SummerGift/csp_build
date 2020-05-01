@@ -12,10 +12,6 @@ before_install:
 #    "scons --version && pytest --version
 #     && cd /rt-thread && git clone https://gitee.com/SummerGift/hello_test.git
 #     && chmod a+x hello_test/build.sh && hello_test/build.sh && cd /rt-thread/csp_build && python csp_build.py"
-  - docker run -v `pwd`:/rt-thread/csp_build \
-    -it summergift/csp_test:v1.0 bash \
-    -c "cd /rt-thread && git clone https://gitee.com/SummerGift/hello_test.git
-      && chmod a+x hello_test/build.sh && hello_test/build.sh
-      && cd /rt-thread/csp_build && python csp_build.py"
+  - docker run -v "`pwd`:/rt-thread/csp_build" -it summergift/csp_test:v1.0 bash -c "python /rt-thread/csp_build/csp_build.py"
 
 
