@@ -17,8 +17,8 @@ def execute_command(cmd_string, cwd=None, shell=True):
     return stdout_str
 
 
-def get_test_result(result):
-    if result.find("Finished building") != -1:
+def get_test_result(content):
+    if content.find("Finished building") != -1:
         return True
     else:
         return False
@@ -35,10 +35,7 @@ def main():
     cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application ' \
               r'org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/rt-thread/eclipse/workspace" '
     cmd = cmd_pre + ' -import "file:/rt-thread/hello_test"'
-    result = execute_command(cmd)
-
-    print("import result {0}".format(result))
-
+    execute_command(cmd)
     cmd = cmd_pre + ' -cleanBuild "hello_test"'
     result = execute_command(cmd)
 

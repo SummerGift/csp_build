@@ -5,8 +5,4 @@ services:
 
 before_install:
   - docker pull summergift/csp_test:v1.0
-  - docker images
-  - ls
   - docker run -v "`pwd`:/rt-thread/csp_build" -it summergift/csp_test:v1.0 bash -c "python /rt-thread/csp_build/csp_build.py"
-
-
