@@ -17,6 +17,13 @@ def execute_command(cmd_string, cwd=None, shell=True):
     return stdout_str
 
 
+def get_test_result(result):
+    if result.find("Finished building") != -1:
+        return True
+    else:
+        return False
+
+
 def main():
     print("Hello python is running...")
     execute_command("scons --version")
@@ -24,14 +31,21 @@ def main():
 
     os.chdir("/rt-thread")
     execute_command("git clone https://gitee.com/SummerGift/hello_test.git")
-    execute_command("chmod a+x hello_test/build.sh")
 
-    result = execute_command("./hello_test/build.sh")
-    if result.find("Finished building") != -1:
-        flag = True
+    cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application ' \
+              r'org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/rt-thread/eclipse/workspace" '
+    cmd = cmd_pre + ' -import "file:/rt-thread/hello_test"'
+    result = execute_command(cmd)
 
-    print("result {0}".format(result))
-    print("flag = {0}".format(flag))
+    print("import result {0}".format(result))
+
+    cmd = cmd_pre + ' -cleanBuild "hello_test"'
+    result = execute_command(cmd)
+
+    if get_test_result(result):
+        print("================>Project test success.")
+    else:
+        print("================>Project test fails.")
 
 
 if __name__ == '__main__':
