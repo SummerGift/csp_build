@@ -35,7 +35,7 @@ def main():
 
     # cmd = cmd_pre + ' -cleanBuild "hello_test"'
 
-    result = execute_command("source hello_test/build.sh")
+    result = execute_command("./hello_test/build.sh")
     if result.find("Finished building") != -1:
         flag = True
 
