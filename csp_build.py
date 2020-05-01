@@ -36,8 +36,13 @@ def main():
     # cmd = cmd_pre + ' -cleanBuild "hello_test"'
 
     result = execute_command("./hello_test/build.sh")
-    if result.find("Finished building") != -1:
-        flag = True
+    for line in result.readlines():
+        if line.find("Finished building") != -1:
+            print(line)
+            flag = True
+
+    # if result.find("Finished building") != -1:
+    #     flag = True
 
     # f = os.popen("hello_test/build.sh")
     # for line in f.readlines():
