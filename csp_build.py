@@ -26,16 +26,16 @@ def main():
     execute_command("git clone https://gitee.com/SummerGift/hello_test.git")
     execute_command("chmod a+x hello_test/build.sh")
 
-    cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/rt-thread/eclipse/workspace"'
-    cmd = cmd_pre + ' -import "file:/rt-thread/hello_test"'
-    print(cmd)
-    os.system(cmd)
+    # cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/rt-thread/eclipse/workspace"'
+    # cmd = cmd_pre + ' -import "file:/rt-thread/hello_test"'
+    # print(cmd)
+    # os.system(cmd)
+    #
+    # flag = False
 
-    flag = False
+    # cmd = cmd_pre + ' -cleanBuild "hello_test"'
 
-    cmd = cmd_pre + ' -cleanBuild "hello_test"'
-    print(cmd)
-    f = os.popen(cmd)
+    f = os.popen("hello_test/build.sh")
     for line in f.readlines():
         if line.find("Finished building"):
             print(line)
