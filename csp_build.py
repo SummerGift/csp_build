@@ -31,9 +31,17 @@ def main():
     print(cmd)
     os.system(cmd)
 
+    flag = False
+
     cmd = cmd_pre + ' -cleanBuild "hello_test"'
     print(cmd)
-    os.system(cmd)
+    f = os.popen(cmd)
+    for line in f.readlines():
+        if line.find("Finished building"):
+            print(line)
+            flag = True
+
+    print("flag = {0}".format(flag))
 
 
 if __name__ == '__main__':
