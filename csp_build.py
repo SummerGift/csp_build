@@ -31,7 +31,7 @@ def main():
     # print(cmd)
     # os.system(cmd)
     #
-    # flag = False
+    flag = False
 
     # cmd = cmd_pre + ' -cleanBuild "hello_test"'
 
