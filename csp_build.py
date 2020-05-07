@@ -46,6 +46,7 @@ def main():
     os.chdir("/rt-thread")
 
     update_glibc()
+    os.chdir("/rt-thread")
 
     execute_command("git clone https://gitee.com/SummerGift/hello_test.git")
 
