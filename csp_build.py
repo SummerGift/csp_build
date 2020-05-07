@@ -24,12 +24,29 @@ def get_test_result(content):
         return False
 
 
+def update_glibc():
+    execute_command("wget http://ftp.gnu.org/gnu/glibc/glibc-2.25.tar.gz")
+    execute_command("wget http://ftp.gnu.org/gnu/glibc/glibc-linuxthreads-2.3.2.tar.gz")
+    execute_command("tar -zxvf glibc-2.25.tar.gz")
+    execute_command("cd glibc-2.25")
+    execute_command("tar -zxvf ../glibc-linuxthreads-2.3.2.tar.gz")
+    execute_command("cd ..")
+    execute_command("./glibc-2.25/configure --prefix=/usr --disable-profile "
+                    "--enable-add-ons --libexecdir=/usr/lib --with-headers=/usr/include")
+    execute_command("cd glibc-2.25")
+    execute_command("make")
+    execute_command("make install")
+
+
 def main():
     print("Hello python is running...")
     execute_command("scons --version")
     execute_command("pytest --version")
 
     os.chdir("/rt-thread")
+
+    update_glibc()
+
     execute_command("git clone https://gitee.com/SummerGift/hello_test.git")
 
     cmd_pre = r'/rt-thread/eclipse/eclipse -nosplash --launcher.suppressErrors -application ' \
