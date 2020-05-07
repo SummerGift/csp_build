@@ -33,7 +33,7 @@ def update_glibc():
     execute_command("cd ..")
     execute_command("./glibc-2.25/configure --prefix=/usr --disable-profile "
                     "--enable-add-ons --libexecdir=/usr/lib --with-headers=/usr/include")
-    execute_command("cd glibc-2.25")
+    # execute_command("cd glibc-2.25")
     execute_command("make")
     execute_command("make install")
 
